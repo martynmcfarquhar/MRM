@@ -95,7 +95,7 @@ if isempty(findobj('type','figure','name','MRM Post-estimation Tools')) ~= 1
     end
 end
 
-if isempty(findobj('type','figure','name','MANOVA for fMRI')) ~= 1
+if isempty(findobj('type','figure','name','MANOVA for neuroimaging')) ~= 1
     
     answer = questdlg(['Opening a different model specification will lose the ' ... 
                        'information currently entered. Do you want to continue?'], ...
@@ -137,7 +137,7 @@ if isempty(findobj('type','figure','name','MRM Post-estimation Tools')) ~= 1
     end
 end
 
-if isempty(findobj('type','figure','name','Repeated measures for fMRI')) ~= 1
+if isempty(findobj('type','figure','name','Repeated measures for neuroimaging')) ~= 1
     
     answer = questdlg(['Opening a different model specification will lose the ' ... 
                        'information currently entered. Do you want to continue?'], ...
@@ -164,8 +164,8 @@ function postEstButton_Callback(hObject, eventdata, handles)
 
 global MRM
 
-if isempty(findobj('type','figure','name','Repeated measures for fMRI')) ~= 1 || ...
-        isempty(findobj('type','figure','name','MANOVA for fMRI')) ~= 1
+if isempty(findobj('type','figure','name','Repeated measures for neuroimaging')) ~= 1 || ...
+        isempty(findobj('type','figure','name','MANOVA for neuroimaging')) ~= 1
     
     answer = questdlg(['Opening the post-estimation tools will lose the information ' ...
         'currently entered in the model specification. Do you want to continue?'], ...
@@ -216,41 +216,6 @@ else
     clearvars temp
     return
 end
-
-% If results table is open then close it
-% if isempty(findobj('type','figure','name','Results Table')) ~= 1
-%     
-%     h = findobj('type','figure','name','Results Table');
-%     delete(h);
-%     
-% end
-% 
-% % If viewer window is open then close it
-% if isempty(findobj('type','figure','name','MRMviewer')) ~= 1
-%     
-%     h = findobj('type','figure','name','MRMviewer');
-%     delete(h);
-%     
-%     handles = guidata(hObject);
-%     handles.reslicedOverlay = [];
-%     guidata(hObject, handles);
-%     
-% end
-% 
-% % If plot window is open then close it
-% if isempty(findobj('type','figure','name','MRM Bar Plot')) ~= 1
-%     
-%     h = findobj('type','figure','name','MRM Bar Plot');
-%     delete(h);
-%     
-% end
-% 
-% % If post-estimation window is open then close it
-% if isempty(findobj('type','figure','name','MRM Post-estimation Tools')) ~= 1
-%     
-%     h = findobj('type','figure','name','MRM Post-estimation Tools');
-%     delete(h);
-% end
 
 MRM_closeAllWindows();
 

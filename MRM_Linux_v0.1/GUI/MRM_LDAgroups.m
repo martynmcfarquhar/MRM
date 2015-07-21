@@ -174,5 +174,3 @@ quit = questdlg('Are you sure you want to close this window? All changes will be
 if strcmp(quit, 'Yes') == 1
     delete(handles.figure1)
 end
-
-
