@@ -1,0 +1,6 @@
+v0.2
+===================================================
+- Fixed a problem with MATLAB 2014+ that prevented
+contrasts from being entered manually
+- Fixed the design visualisation issues introduced
+in MATLAB 2014
