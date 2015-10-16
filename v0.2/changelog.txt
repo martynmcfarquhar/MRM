@@ -1,6 +1,5 @@
 v0.2
 ===================================================
-- Fixed a problem with MATLAB 2014+ that prevented
-contrasts from being entered manually
-- Fixed the design visualisation issues introduced
-in MATLAB 2014
+- Fixed a problem with MATLAB 2014+ that prevented contrasts from being entered manually
+- Fixed the design visualisation issues introduced in MATLAB 2014 - this will make the titles incorrectly positioned in MATLAB 2013
+- Fixed the visible axis in the overlay image window

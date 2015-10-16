@@ -99,6 +99,11 @@ if strcmp(varargin{1}, 'View')
     edit = ones(1, numCells);
     edit = logical(edit);
     set(handles.betweenSubjectsConsTable, 'ColumnEditable', edit);
+    colFormat = cell(1,numCells);
+    for i = 1:numCells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.betweenSubjectsConsTable, 'ColumnFormat', colFormat);
     
     cells = {MRM.Contrasts.Con{conNum}.C};
     set(handles.withinSubjectsConsTable, 'Data', cells{:});
@@ -114,6 +119,11 @@ if strcmp(varargin{1}, 'View')
     edit = ones(1,numCells);
     edit = logical(edit);
     set(handles.withinSubjectsConsTable, 'ColumnEditable', edit);
+    colFormat = cell(1,numCells);
+    for i = 1:numCells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.withinSubjectsConsTable, 'ColumnFormat', colFormat);
     
 end
 
@@ -148,6 +158,13 @@ if strcmp(varargin{1}, 'New') == 1
     edit = ones(1,cells);
     edit = logical(edit);
     set(handles.betweenSubjectsConsTable, 'ColumnEditable', edit);
+    
+    % Set table format to numeric
+    colFormat = cell(1,cells);
+    for i = 1:cells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.betweenSubjectsConsTable, 'ColumnFormat', colFormat);
 
     % Within-subject
     cells = 1;
@@ -169,12 +186,18 @@ if strcmp(varargin{1}, 'New') == 1
     edit = logical(edit);
     set(handles.withinSubjectsConsTable, 'ColumnEditable', edit);
     
+    % Set table format to numeric
+    colFormat = cell(1,cells);
+    for i = 1:cells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.withinSubjectsConsTable, 'ColumnFormat', colFormat);
+    
     if strcmp(MRM.Model, 'MANOVA') == 1    
         identityMatButtonWS_Callback(handles.identityMatButtonWS, eventdata, handles);
     end
     
 end
-
 
 %-------------------------------------------------------------------------%
 % Window name
@@ -232,6 +255,8 @@ end
 % Check the between-subjects contrasts
 %--------------------------------------------------------------------------
 BSdata = cell2mat(get(handles.betweenSubjectsConsTable, 'Data'));
+%BSdata = get(handles.betweenSubjectsConsTable, 'Data');
+%BSdata(cellfun('isempty',BSdata)) = {'0'};
 
 % Make sure a value has been entered for each column
 if size(BSdata, 2) ~= size(MRM.Design.X.X,2)

@@ -115,7 +115,6 @@ switch MRM.Model
         if MRM.Factors.Within.Number > 0
             subplot(1,2,1);
             imagesc(MRM.Design.Y.Y);
-            %caxis([0 size(MRM.Design.Y.Cell, 2)]);
             set(gca,'xtick', 1:size(MRM.Design.Y.Cell, 2));
             set(gca,'xticklabel', Ylabels);
             set(gca,'FontSize', 12);
@@ -124,9 +123,7 @@ switch MRM.Model
             set(gca,'yticklabel',[]);
             colormap('gray');
             title('Factorial structure of $\mathbf{Y}$', ...
-                'interpreter', 'latex', ...
-                'FontSize', 15, ...
-                'Position', [0.5 1.01 0]);
+                  'interpreter', 'latex');
             
         end
         
@@ -135,7 +132,6 @@ switch MRM.Model
         if MRM.Factors.Within.Factors{1}.LevelsNum > 1
             subplot(1,2,1);
             imagesc(MRM.Design.Y.Y);
-            %caxis([0 size(MRM.Design.Y.Cell, 2)]);
             set(gca,'xtick', 1:size(MRM.Design.Y.Cell, 2));
             set(gca,'xticklabel', Ylabels);
             set(gca,'FontSize', 12);
@@ -144,9 +140,7 @@ switch MRM.Model
             set(gca,'yticklabel',[]);
             colormap('gray');
             title('Multivariate structure of $\mathbf{Y}$', ...
-                'interpreter', 'latex', ...
-                'FontSize', 15, ...
-                'Position', [0.5 1.01 0]);
+                  'interpreter', 'latex');
         end
 end
 
@@ -159,25 +153,13 @@ end
 X = MRM.Design.X.X;
 
 %Scale covariates so that they visualise better
- if MRM.Covariates.Number > 0
-%     
+ if MRM.Covariates.Number > 0 
      if isfield(MRM.Covariates, 'CV')
-%    
          for i = 1:MRM.Covariates.Number
-% 
              colNum      = MRM.Covariates.CV{i}.Col;
-%             %v           = X(:,colNum);
-%             %values      = v(v ~= 0);
              values      = X(:,colNum);
              values = values ./ max(values); % scale the CV
-%             values      = values - min(values(:));
-%             values      = (values/(max(values(:)) - min(values(:))) * 2);
-%             values      = values - 1;
-%             values(values == -1) = 0;
-%             %v(v~=0) = values;
-%             %X(:,colNum) = v;
              X(:,colNum) = values;
-% 
          end
      end
  end
@@ -197,7 +179,6 @@ switch MRM.Model
 end
 
 imagesc(X);
-%caxis([-1 1]);
 colormap(gray);
 set(gca,'xtick', 1:size(MRM.Design.X.Cell, 2) + MRM.Covariates.Number);
 set(gca,'xticklabel', Xlabels);
@@ -206,9 +187,7 @@ rotateXLabels(gca(), 45);
 colormap('gray');
 
 title('Design matrix $\mathbf{X}$', ...
-      'interpreter','latex', ...
-      'FontSize', 15, ...
-      'Position', [0.5 1.005 0]);
+      'interpreter','latex');
 
   
   

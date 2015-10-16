@@ -93,6 +93,11 @@ if strcmp(varargin{1}, 'View')
     edit = ones(1, numCells);
     edit = logical(edit);
     set(handles.betweenSubjectsConsTable, 'ColumnEditable', edit);
+    colFormat = cell(1,numCells);
+    for i = 1:numCells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.betweenSubjectsConsTable, 'ColumnFormat', colFormat);
     
     cells = {MRM.Contrasts.Plots.Con{conNum}.C};
     set(handles.withinSubjectsConsTable, 'Data', cells{:});
@@ -108,6 +113,11 @@ if strcmp(varargin{1}, 'View')
     edit = ones(1,numCells);
     edit = logical(edit);
     set(handles.withinSubjectsConsTable, 'ColumnEditable', edit);
+    colFormat = cell(1,numCells);
+    for i = 1:numCells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.withinSubjectsConsTable, 'ColumnFormat', colFormat);
     
 end
 
@@ -142,6 +152,13 @@ if strcmp(varargin{1}, 'New') == 1
     edit = ones(1,cells);
     edit = logical(edit);
     set(handles.betweenSubjectsConsTable, 'ColumnEditable', edit);
+    
+    % Set table format to numeric
+    colFormat = cell(1,cells);
+    for i = 1:cells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.betweenSubjectsConsTable, 'ColumnFormat', colFormat);
 
     % Within-subject
     cells = 1;
@@ -162,6 +179,13 @@ if strcmp(varargin{1}, 'New') == 1
     edit = ones(1,cells);
     edit = logical(edit);
     set(handles.withinSubjectsConsTable, 'ColumnEditable', edit);
+    
+    % Set table format to numeric
+    colFormat = cell(1,cells);
+    for i = 1:cells
+        colFormat{i} = 'numeric';
+    end
+    set(handles.withinSubjectsConsTable, 'ColumnFormat', colFormat);    
     
 end
 

@@ -327,6 +327,8 @@ if infoPane == 1
         'Color',               'white');
 end
 
+axis off
+
 sliceHandles(4) = gca;
 
 
