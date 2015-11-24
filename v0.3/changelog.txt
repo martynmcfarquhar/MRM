@@ -1,0 +1,5 @@
+v0.3
+===================================================
+- Added F-tests for the discriminant functions
+- Added partial F-tests for the individual DVs in the dLDA
+- Removed elapsed time displayed for the model estimation
