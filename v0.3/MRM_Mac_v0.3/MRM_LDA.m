@@ -163,10 +163,10 @@ if R > 1
         else
             t = 1;
         end
-        w = size(Y,1) - 1 - 0.5*(p+k);
-        df1 = (p-m+1)*(k-m);
-        df2 = w*t - 0.5*((p-m+1)*(k-m)-2);
-        F = ((1 - lambda^(1/t))/(lambda^(1/t))) * (df2/df1);
+        w    = size(Y,1) - 1 - 0.5*(p+k);
+        df1  = (p-m+1)*(k-m);
+        df2  = w*t - 0.5*((p-m+1)*(k-m)-2);
+        F    = ((1 - lambda^(1/t))/(lambda^(1/t))) * (df2/df1);
         pVal = 1 - spm_Fcdf(F, [df1 df2]);
         
         functionTests(m,1) = F;
@@ -201,7 +201,7 @@ for i = 1:size(Y,2)
    [subEv, ~]   = sort(subEv, 'descend');
    
    for j = 1:R
-      lambdaSubset = lambdaSubset * (1/(1 + subEv(j))); 
+      lambdaSubset = lambdaSubset * 1/(1 + subEv(j)); 
    end
    
    partialLambda    = lambdaAll / lambdaSubset;
@@ -256,16 +256,12 @@ end
 
 centroids = zeros(groupNum, R);
 
-for i = 1:R
-    
-    for j = 1:groupNum
-        
+for i = 1:R  
+    for j = 1:groupNum   
         for k = 1:size(UnstandCanonDFreturn,1)-1
             centroids(j,i) = centroids(j,i) + UnstandCanonDFreturn(k,i) * mean(Y(X(:,j) == 1,k));
-        end
-        
+        end   
         centroids(j,i) = cons(1,i) + centroids(j,i);
-        
     end
 end
 
@@ -316,41 +312,33 @@ if plotScores == 1
     win = get(0, 'ScreenSize');
 
     figure('Position',      [win(3)/4, win(4)/4, win(3)/2, win(4)/1.5], ...
-        'Units',         'Pixels', ...
-        'NumberTitle',   'off',    ...
-        'DockControls',  'off', ...
-        'ToolBar',       'none');
+           'Units',         'Pixels',   ...
+           'NumberTitle',   'off',      ...
+           'DockControls',  'off',      ...
+           'ToolBar',       'none');
 
     for i = 1:size(plotnums,1)
         subplot(nRows, nCols, i);
-
         gscatter(discrimVals(:,plotnums(i,1)), discrimVals(:,plotnums(i,2)), groupList);
         legend(groupLabs, 'Location', 'best')
         xlabel(['Discrminant function ' num2str(plotnums(i,1))]);
-        ylabel(['Discrminant function ' num2str(plotnums(i,2))]);
-        
-        for j = 1:groupNum
-           
-            text(centroids(j,plotnums(i,1)), centroids(j, plotnums(i,2)), ...
-                 ['+ ' num2str(j)])
-            
-        end
-        
+        ylabel(['Discrminant function ' num2str(plotnums(i,2))]);       
+        for j = 1:groupNum  
+            text(centroids(j,plotnums(i,1)), centroids(j, plotnums(i,2)), ['+ ' num2str(j)])   
+        end    
     end
     
-    axes('Position',[0 0 1 1], ...
-         'Xlim',[0 1], ...
-         'Ylim',[0 1], ...
-         'Box','off', ...
-         'Visible','off', ...
-         'Units','normalized', ...
+    axes('Position',[0 0 1 1],  ...
+         'Xlim',[0 1],          ...
+         'Ylim',[0 1],          ...
+         'Box','off',           ...
+         'Visible','off',       ...
+         'Units','normalized',  ...
          'clipping' , 'off');
     
     text(0.5, 0.98, ...
         ['Discriminant function scores and group centroids for voxel ' num2str(coords)], ...
-        'HorizontalAlignment','center', ...
-        'VerticalAlignment', 'top');
-    
+        'HorizontalAlignment','center','VerticalAlignment','top');    
 end
 
 end
