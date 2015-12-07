@@ -3,3 +3,6 @@ v0.3
 - Added F-tests for the discriminant functions
 - Added partial F-tests for the individual DVs in the dLDA
 - Removed elapsed time displayed for the model estimation
+- Removed the covariate option from LDA until I know whether the inferential tests need adjusting when covariates are included
+- Improved error reporting in the post-estimation tools for when there is missing data at the voxel of interest
+- Various bug fixes

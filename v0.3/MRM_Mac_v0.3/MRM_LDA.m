@@ -49,11 +49,13 @@ function [EvReturn, EigVecRawReturn, UnstandCanonDFreturn, StandCanonDF, varExpl
 %--------------------------------------------------------------------------
 % Model estimation
 %--------------------------------------------------------------------------
-beta  = (X' * X) \ X' * Y;
+iXX = inv(X'*X);
+
+beta  = iXX * X' * Y;
 Resid = Y - X * beta;
 
 % SSCPH and SSCPR
-H = (L * beta)' * inv(L * inv(X' * X) * L') * (L * beta);
+H = (L * beta)' * inv(L * iXX * L') * (L * beta);
 E = Resid' * Resid;
 
 R = rank(H);
@@ -193,9 +195,9 @@ for i = 1:size(Y,2)
    % Sub model
    subY         = Y;
    subY(:,i)    = [];
-   subBeta      = (X' * X) \ X' * subY;
+   subBeta      = iXX * X' * subY;
    subResid     = subY - X * subBeta;
-   subH         = (L * subBeta)' * inv(L * inv(X' * X) * L') * (L * subBeta);
+   subH         = (L * subBeta)' * inv(L * iXX * L') * (L * subBeta);
    subE         = subResid' * subResid;
    subEv        = eig(subE \ subH);
    [subEv, ~]   = sort(subEv, 'descend');
