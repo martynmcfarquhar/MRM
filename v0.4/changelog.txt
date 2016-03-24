@@ -1,0 +1,5 @@
+v0.4
+===================================================
+- Fixed a bug where the covariates and dLDA group specifier would not paste numeric data
+- Fixed a bug where a window was not closed, despite warning that it would be
+- Change the file selector to use spm_select instead
