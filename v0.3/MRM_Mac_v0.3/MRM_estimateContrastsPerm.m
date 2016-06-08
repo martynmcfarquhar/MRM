@@ -184,6 +184,7 @@ mkdir([outDir 'PermutationContrasts']);
 % Check for mask
 if isempty(MRM.Options.Mask) ~= 1
     mask    = spm_data_read(spm_data_hdr_read([outDir 'MRM_mask.nii']));
+    mask(mask == 0) = NaN;
     useMask = 1; 
 else
     useMask = 0;

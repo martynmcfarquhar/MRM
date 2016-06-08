@@ -382,10 +382,12 @@ if whichPlot == 5
     end
        
     % Group mapping of the data
-    groupNum = cell(size(voxelData, 1), 1);
+    %groupNum = cell(size(voxelData, 1), 1);
+    ind = zeros(size(voxelData, 1), 1);
     
     for i = 1:size(voxelData, 1)  
-        groupNum{i} = num2str(find(Xnan(i,:) == 1)); 
+        %groupNum{i} = num2str(find(Xnan(i,:) == 1)); 
+        ind(i,1) = find(Xnan(i,:) == 1);
     end
     
     % Labels
@@ -414,13 +416,15 @@ if whichPlot == 5
 
         % Scatter plot
         Ynew = voxelData(:,i);
-        ind = cell2mat(groupNum);
-        scatter(str2num(ind), Ynew, 'black', 'jitter','on', 'jitterAmount',0.1);
+        %ind = cell2mat(groupNum);
+        %ind = str2double(groupNum{:});
+        scatter(ind, Ynew, 'black', 'jitter','on', 'jitterAmount',0.1);
         hold on;
         
         % Box plot
         Ynew = voxelData(:,i);
-        boxplot(Ynew, groupNum);
+        %boxplot(Ynew, groupNum);
+        boxplot(Ynew, ind);
         
         hold off;
         

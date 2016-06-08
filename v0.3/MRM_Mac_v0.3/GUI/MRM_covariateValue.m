@@ -167,6 +167,9 @@ global MRM
 
 values = importdata('-pastespecial');
 
+values = cell2mat(values);
+values = str2num(values);
+
 % Check the data type
 if isa(values, 'double') ~= 1 
     msgbox('The data on the clipboard does not appear to be numeric');

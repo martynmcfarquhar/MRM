@@ -1,0 +1,5 @@
+v0.5
+===================================================
+- Fixed a bug where using spm_select lead to the data selector indicating that a NifTi file was not NifTi
+- Fixed an issue with calculating the ranks of SSCPH and SSCPE that could lead to an underestimation in certain slices (lead to ‘striping’ in the refF images)
+- Fixed a bug where the input box for the mask would disappear if the user pressed cancel
