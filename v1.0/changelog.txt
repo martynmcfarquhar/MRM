@@ -1,0 +1,4 @@
+v1.0
+===================================================
+- Removed the platform-specific versions of MRM in favour of a single release for all platforms
+- Removed the included SPM functions in favour of requiring SPM to be provided by the user. This will help compatibility going forward

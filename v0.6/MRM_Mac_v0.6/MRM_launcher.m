@@ -65,6 +65,13 @@ addpath(genpath([path filesep 'GUI']));
 addpath(genpath([path filesep 'Utilities']));
 addpath(genpath([path filesep 'PlotTools']));
 
+% See if SPM is already available
+if exist('spm.m', 'file') ~= 0
+    if strcmp(spm('ver'), 'SPM12')
+        rmpath(genpath([path filesep 'Utilities' filesep 'spm']));
+    end
+end
+
 
 
 % --- Outputs from this function are returned to the command line.

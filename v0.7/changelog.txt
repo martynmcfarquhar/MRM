@@ -1,0 +1,5 @@
+v0.6
+===================================================
+- Quick fix to the permutation script to prevent issues 
+when using data where values outside the brain are not 0 
+or NaN
