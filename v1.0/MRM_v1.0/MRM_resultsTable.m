@@ -65,6 +65,7 @@ Pimg = spm_data_read(spm_data_hdr_read(PimgPath));
 [dimX, dimY, dimZ] = size(Fimg);
 
 % Turn the Fimg into a list of values
+Fimg(Fimg(:) == 0) = NaN;
 Fcollapsed = Fimg(:);
 
 % Create the 3 x n matrix of voxel coordinates
@@ -78,6 +79,9 @@ end
 indexes = indexes';
 
 % Remove indices to NaN's in the F-image
+assignin('base','Fimg',Fimg);
+assignin('base','indexes',indexes);
+
 indexes(:,isnan(Fcollapsed))  = [];
 Fcollapsed(isnan(Fcollapsed)) = [];
 
